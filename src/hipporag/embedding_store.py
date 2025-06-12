@@ -58,9 +58,17 @@ class EmbeddingStore:
         missing_ids = [hash_id for hash_id in all_hash_ids if hash_id not in existing]
         texts_to_encode = [nodes_dict[hash_id]["content"] for hash_id in missing_ids]
 
+        # example:
+        # {
+        #     "hash_id_1": {
+        #         "hash_id": "hash_id_1",
+        #         "content": "文本内容1"
+        #     }
+        # }
         return {h: {"hash_id": h, "content": t} for h, t in zip(missing_ids, texts_to_encode)}
 
     def insert_strings(self, texts: List[str]):
+        # this function is used to insert the texts into the embedding store
         nodes_dict = {}
 
         for text in texts:

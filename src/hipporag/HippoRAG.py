@@ -227,8 +227,10 @@ class HippoRAG:
         logger.info(f"Performing OpenIE")
 
         if self.global_config.openie_mode == 'offline':
+            # offline mode, pre-process the docs and save the results
             self.pre_openie(docs)
 
+        # insert the docs into the embedding store
         self.chunk_embedding_store.insert_strings(docs)
         chunk_to_rows = self.chunk_embedding_store.get_all_id_to_rows()
 

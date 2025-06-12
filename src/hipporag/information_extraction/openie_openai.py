@@ -28,6 +28,7 @@ class LLMInput:
 
 
 def _extract_ner_from_response(real_response):
+    # use regex to extract the named_entities from the response
     pattern = r'\{[^{}]*"named_entities"\s*:\s*\[[^\]]*\][^{}]*\}'
     match = re.search(pattern, real_response, re.DOTALL)
     if match is None:
